@@ -1,0 +1,21 @@
+<!--page de l'historique-->
+
+{%extends 'books/layout.html'%}
+{%block body%}
+    <h1> History </h1>
+    
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book.title }} by {{ book.author }} ({{ book.date }})
+                — {{ book.get_reason_display }}
+                {% if book.reason_details %}
+                    — {{ book.reason_details }}
+                {% endif %}
+                — {{ book.del_date }}
+            </li>
+        {% empty %}
+            <li>No books have been deleted.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

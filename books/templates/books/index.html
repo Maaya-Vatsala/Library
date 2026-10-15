@@ -1,0 +1,55 @@
+{% extends 'books/layout.html' %} {%comment%}strcture du layout car répétition{%endcomment%}
+
+{%comment%}index html de books affiche comme la page d'accueil : toutes les infos de tous les livres{%endcomment%}
+
+{% block body %} {%comment%}indique où placer le contenu de la page{%endcomment%}
+    <h1> Your Library </h1>
+
+    {%comment%}si search a book {%endcomment%}
+    <form method ="get">
+        {{form.as_p}} {%comment%}dmd à Django d'aff les champs{%endcomment%}
+        <button type="submit" name ="search" value ="1">Search</button> {%comment%}le button envoie à la m^ p index avec resu filtrés; name est le nom du para envoie à Dj, ref code; value=1 =>cliqué {%endcomment%}
+    </form>
+
+    {%comment%}si bien search click alors aff les oeuvres concernées ou sinon tout aff{%endcomment%}
+    <ul>
+        {% for book in books %} {%comment%}boucle parcourt tous les livres{%endcomment%}
+            <li> {{ book.title }} by {{ book.author }} ({{ book.date }}) </li> {%comment%}affiche infos du livre{%endcomment%}
+        {% empty %} {%comment%} Si y a pas de livres {%endcomment%}
+            {% if search_performed %} {%comment%}dans recherche{%endcomment%}
+                <li> Seems like this book is not here. Recheck the spelling or go buy it and it !</li>
+            {%else%} {%comment%}par défaut si aucun livre {%endcomment%}
+                <li> No books in your library, yet. Would you like to add one? </li> {%comment%}aff msg{%endcomment%}
+            {%endif%}
+        {% endfor %} {%comment%}fin boucle{%endcomment%}
+    </ul>
+ 
+{% endblock %} {%comment%}fin block body{%endcomment%}
+
+
+
+
+{%comment%}
+
+
+{% if book_to_del_performed %} dans suppression
+                <li> This book is not in your library. </li>
+            {% if history_performed %}dans historique
+                <li> No book deleted</li>
+
+
+<!Doctype html>
+<html lang ="en">
+
+<head>
+    <meta charset = "UTF-8">
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Books</title>
+</head>
+
+<body>
+    <h1>Your Library</h1>
+</body>
+</html>
+
+{%endcomment%}

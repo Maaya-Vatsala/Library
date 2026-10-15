@@ -1,0 +1,28 @@
+<!--car partie commune entre addBook et index-->
+
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    {% load static %} <!--activer outil Django pour retrouver fichiers static : css-->
+    <link rel="stylesheet" href="{%static 'books/css/style.css' %}"> <!--lien du fichier css-->
+</head>
+    
+<body> <!--contenu visible-->
+
+    <nav> <!--barre de navigation-->
+        <a href = "{% url 'books:index' %}"> Home </a> <!--adresse associée à la route-->
+        <a href = "{% url 'books:addBook' %}"> Add a Book </a>
+        <a href = "{% url 'books:findBook'%}"> Delete a Book </a>
+        <a href = "{% url 'books:history'%}"> History </a>
+    </nav>
+
+    <main class="container"> <!--pour css-->
+        {% block body %} <!--endroit où les autres pages contenu-->
+        {% endblock %}
+    </main>
+
+</body>
+</html>

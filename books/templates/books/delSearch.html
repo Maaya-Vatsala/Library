@@ -1,0 +1,25 @@
+{% extends 'books/layout.html' %}
+
+{% block body %}
+    <h1>Choose a book to delete</h1>
+
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit" name="search" value="1">Search</button>
+    </form>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book.title }} by {{ book.author }} ({{ book.date }})
+                <a href="{% url 'books:delBook' book.id %}">Delete</a>
+            </li>
+        {% empty %}
+            {% if search_performed %}
+                <li>No found</li>
+            {% else %}
+                <li>No books in your library yet.</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

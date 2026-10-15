@@ -1,0 +1,14 @@
+{%extends 'books/layout.html'%}
+
+{% comment %} page où rediriger pour supprimer un livre {% endcomment %}
+
+{%block body%}
+    <h1> Delete this book ?</h1>
+    <p>{{ book.title }} by {{ book.author }} ({{ book.date }})</p>
+    
+    <form method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type="submit"> Confirm deletion </button>
+    </form>
+{%endblock%}
